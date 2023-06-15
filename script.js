@@ -9,17 +9,8 @@ function reload() {
 
 async function fetchNews(query) {
   const response = await fetch(`${url}${query}&apiKey=${API_KEY}`);
-  // const data = await response.json();
-  if (!response.ok) {
-    console.error("Request failed:", response.status);
-    return;
-  }
   const data = await response.json();
-  if (data && data.articles) {
-    bindData(data.articles);
-  } else {
-    console.error("Invalid response data:", data);
-  }
+  bindData(data.articles);
 }
 
 function bindData(articles) {
