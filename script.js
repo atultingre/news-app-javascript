@@ -10,7 +10,12 @@ function reload() {
 async function fetchNews(query) {
   const response = await fetch(`${url}${query}&apiKey=${API_KEY}`);
   const data = await response.json();
-  bindData(data.articles);
+  if (data.articles) {
+    bindData(data.articles);
+  } else {
+    console.error("Unable to fetch articles from API.");
+  }
+  // bindData(data.articles);
 }
 
 function bindData(articles) {
